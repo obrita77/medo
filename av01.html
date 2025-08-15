@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protótipo Login + Lista de Tarefas</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #000000;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      padding: 1rem;
+      max-width: 500px;
+      margin: auto;
+    }
+    button, input, textarea {
+      font-size: 1rem;
+    }
+    .btn {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      background-color: #000000;
+    }
+    .task {
+      background-color: white;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .task-title {
+      margin: 0;
+    }
+    .link {
+      color: #000000;
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .login-card {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-top: 5rem;
+    }
+    .login-card h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+<main id="tela-login">
+  <div class="login-card">
+    <h2>Login</h2>
+    <label for="email">E-mail</label>
+    <input type="email" id="email" placeholder="seu@email.com" />
+
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" placeholder="••••••••" />
+
+    <button class="btn" onclick="mostrarTela('tela-lista')">Enter</button>
+  </div>
+</main>
+
+<header id="header-app" style="display:none;">
+  <h1>Lista de Tarefas</h1>
+</header>
+<main id="tela-lista" style="display:none;">
+  <h2>Minhas Tarefas</h2>
+  <div class="task">
+    <span class="task-title">Comprar pão</span>
+    <a href="#detalhes" class="link" onclick="mostrarTela('tela-detalhes')">Detalhes</a>
+  </div>
+  
+  <button class="btn" onclick="mostrarTela('tela-adicionar')">Adicionar Tarefa</button>
+</main>
+
+<main id="tela-adicionar" style="display:none;">
+  <h2>Adicionar Nova Tarefa</h2>
+  <label for="titulo">Título da Tarefa</label>
+  <input type="text" id="titulo" placeholder="Digite o título" />
+
+  <label for="descricao">Descrição</label>
+  <textarea id="descricao" rows="4" placeholder="Digite a descrição"></textarea>
+
+  <button class="btn" onclick="mostrarTela('tela-lista')">Salvar</button>
+</main>
+
+<main id="tela-detalhes" style="display:none;">
+  <h2>Detalhes da Tarefa</h2>
+  <p><strong>Título:</strong> Comprar pão</p>
+  <p><strong>Descrição:</strong> Ir à padaria e comprar pão .</p>
+  <button class="btn" onclick="mostrarTela('tela-lista')">Voltar</button>
+</main>
+
+<script>
+  function mostrarTela(id) {
+    document.querySelectorAll('main').forEach(tela => tela.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    document.getElementById('header-app').style.display = (id !== 'tela-login') ? 'block' : 'none';
+  }
+</script>
+
+</body>
+</html>
